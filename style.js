@@ -11,6 +11,7 @@ export const Header = styled.div`
  width:100%;
  height: 150px;
  position: sticky;
+ border: 1px solid #fff;
  border-top-left-radius: 6px;
  border-top-right-radius: 6px;
  background: #dcdcde;
@@ -36,5 +37,24 @@ export const Button = styled.button`
  border-radius: 6px;
  position:absolute;
  left:80%;
- top:43%
+ top:43%;
+`;
+export const ToDoDiv = styled.div`
+ width: 95%;
+ height: 30px;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ margin: 4% 2%;
+ padding: 0 2px;
+ border: 1px solid black;
+ border-radius: 6px;
+
+`;
+export const Savedinfo = styled.div`
+ width: 100%;
+ height:77%;
+ border-bottom-left-radius: 6px;
+ border-bottom-right-radius: 6px;
+ overflow-y:scroll ;
 `;

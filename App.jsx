@@ -1,19 +1,51 @@
-import React from 'react';
-import {Container, Header, Text, Input, Button} from './style'
+import React, {  useState } from 'react';
+import { Container, Header, Text, Input, Savedinfo, Button, ToDoDiv } from './style';
+import circle from './icon/circle.svg';
 
 export const Todo = () => {
-  return (
-      <div>
-          <Container>
+
+    localStorage.getItem('data')
+    const [ value, setValue ] = useState( '' )
+    const [ data, setData ] = useState([] )
+    
+    const AddData = () => {
+        setData( prev => {
+            const newData = [...prev, value ];
+                localStorage.setItem( 'data', newData )
+                return newData;
+    })
+    }
+    const onDelete = ( id ) => {
+        return setData( data.filter( ( item, i ) => ( i !== id )
+        ) )
+       
+    };
+    const onValueChange = ( e ) => {
+       setValue( e.target.value )
+        console.log(e.target.value)
+    };
+
+
+    return (
+        <div>
+            <Container>
                 <Header>
-                    <Text>
-                         TODO List
-                    </Text>
-                  <Input type="text" placeholder="Enter Something" />
-                  <Button>Add</Button>
+                    <Text>TODO List</Text>
+                    <Input type="text" onChange={ onValueChange } value={ value } />
+                    <Button onClick={AddData}>Add</Button>
                 </Header>
-          </Container>
-      </div>
+                <Savedinfo>
+                    {
+                        data.map( ( value, id ) => (
+                            <ToDoDiv key={ id }>
+                                { value }
+                                <img src={circle} onClick={()=>onDelete(id)} className="delete" alt="Delete" />
+                            </ToDoDiv>
+                        ))
+                    }
+                </Savedinfo>
+            </Container> 
+       </div>
   )
 }
 export default Todo;
